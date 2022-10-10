@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue localstorage</title>
+    <!-- bootswatch -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+    <!-- file -->
+    <link rel="stylesheet" href="css/users.css">
+    <!-- vue 3 -->
+    <script src="https://unpkg.com/vue@next"></script>
+
+</head>
+<body>
+    <div id="app" class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h2>Usuarios</h2>
+                <div class="card card-body">
+                    <form ref="userForm" v-on:submit="processUser">
+                        <div class="form-group">
+                            <input type="text" ref="name" v-model="user.name" class="form-control" placeholder="Nombre" minlength="10" maxlength="50" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" v-model="user.username" placeholder="Usuario" minlength="5" maxlength="50" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control"v-model="user.email" placeholder="Email" minlength="10" maxlength="50" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success btn-block text-dark" v-bind:value="operation">
+                        </div>
+                        <div class="form-group">
+                            <input type="reset" class="btn btn-primary btn-block" value="Limpiar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <h1>Lista de usuarios</h1>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <!-- nombres de columna -->
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Usuario</th>
+                                <th>Email</th>
+                                <th colspan="2">Acciones</th>
+                            </tr>
+                        </thead>
+                        <!-- cuerpo de la tabla -->
+                        <tbody>
+                            <tr v-for="(user, index) in users">
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.email }}</td>
+                                <td><button @click="editUser(user.id)" class="btn btn-info btn-block">Actualizar</button></td>
+                                <td><button @click="deleteUser(user.id, $event)" class="btn btn-danger btn-block">Eliminar</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+<script src="js/users.js"></script>
+</body>
+</html>  
