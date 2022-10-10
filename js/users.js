@@ -53,7 +53,7 @@ window.addEventListener('load', () =>{
                     this.users.push({
                         id:this.user.id,
                         name:this.user.name,
-                        username:this.username,
+                        username:this.user.username,
                         email:this.user.email
                     });
                     
